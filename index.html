@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol Retro Sport</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fútbol Retro Sport</h1>
+        <nav>
+            <ul>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#carrito">Carrito</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="catalogo">
+        <h2>Catálogo de Camisetas Retro</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="camiseta1.jpg" alt="Camiseta Retro">
+                <h3>Camiseta Argentina 1986</h3>
+                <p>Precio: $40</p>
+                <button onclick="agregarAlCarrito('Camiseta Argentina 1986', 40)">Añadir al Carrito</button>
+            </div>
+            <div class="producto">
+                <img src="camiseta2.jpg" alt="Camiseta Retro">
+                <h3>Camiseta Brasil 1994</h3>
+                <p>Precio: $45</p>
+                <button onclick="agregarAlCarrito('Camiseta Brasil 1994', 45)">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="lista-carrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+    </section>
+    
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Síguenos en nuestras redes sociales:</p>
+        <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">WhatsApp</a></li>
+        </ul>
+    </section>
+    
+    <script>
+        let carrito = [];
+        let total = 0;
+        
+        function agregarAlCarrito(producto, precio) {
+            carrito.push({ producto, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+        
+        function actualizarCarrito() {
+            let listaCarrito = document.getElementById('lista-carrito');
+            let totalElemento = document.getElementById('total');
+            listaCarrito.innerHTML = '';
+            carrito.forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = `${item.producto} - $${item.precio}`;
+                listaCarrito.appendChild(li);
+            });
+            totalElemento.textContent = total;
+        }
+    </script>
+</body>
+</html>
